@@ -1,0 +1,171 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.link_hover {
+  @apply hover:bg-amber-100 px-4 py-2 rounded-lg text-amber-900 flex items-center justify-center
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+h1,h2,h3,h4 {
+  margin: 0.5em;
+}
+
+#root {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid black;
+}
+
+.logo_image {
+  width: 200px;
+}
+
+li {
+  list-style: none;
+}
+
+.nav_items {
+  display: flex;
+}
+
+.nav_items > li {
+  padding: 0 2vw;
+  font-size : 3vh;
+}
+
+.card {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #333;
+  width: 250px;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 25px;
+  z-index: 2;
+}
+
+.card:hover {
+  background-color: #eee;
+}
+
+.image_container{
+  display: inline-block;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.overshadow {
+  height: inherit;
+  width: inherit;
+  border-radius: 25px;
+  box-shadow: inset -2px -1em 3em 0em rgba(0, 0, 0, 0.501);
+} 
+
+.link {
+  text-decoration: none;
+}
+
+.res_image {
+  display: block;
+  position: relative;
+  height: 250px;
+  width: 100%;
+  box-sizing: content-box;
+  border-radius: 25px;
+  z-index: 0;
+}
+
+
+.card_container {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  grid-template-rows: auto;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+  row-gap: 3em;
+}
+
+.search {
+  margin: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer {
+  padding: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color : #fff;
+  background-color: #222;
+}
+
+.cost_fortwo {
+  position: absolute;
+  font-weight: 900;
+  font-size: 1em;
+  bottom: 8px;
+  left: 16px;
+}
+
+.card_info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.filter-btn {
+  margin: 10px;
+  cursor: pointer;
+  padding: 1em;
+  border-radius: 5px;
+  border: none;
+}
+
+.filter-btn:hover {
+  background-color: #fff;
+}
+
+.shimmer-cards {
+  height: 300px;
+  width: 200px;
+  background: linear-gradient(to right, #888, #fff);
+  background-size: 200% 200%;
+  animation: Animation 1s ease infinite;
+  border-radius: 25px;
+}
+
+@keyframes Animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.filter {
+  display: flex;
+}
