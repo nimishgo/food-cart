@@ -8,9 +8,6 @@ export default class UserClass extends Component {
       count2: 1,
     };
   }
-  componentDidMount() {
-    console.log("mount 🙂 ");
-  }
 
   render() {
     const { name, userName } = this.props;

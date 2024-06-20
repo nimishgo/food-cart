@@ -1,4 +1,5 @@
 import useRestaurantMenu from "../utils/useRestaurantMenu";
+import ResAccordion from "./ResAccordion";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 
@@ -10,43 +11,38 @@ const RestaurantMenu = () => {
     return <Shimmer />;
   }
 
+  console.log(resMenu);
+  console.log(
+    resMenu.cards[4].groupedCard.cardGroupMap.REGULAR.cards[1].card.card[
+      "@type"
+    ]
+  );
+
   const { name, city, cuisines, costForTwo } = {
     ...resMenu?.cards[2]?.card?.card?.info,
   };
 
-  console.log(resMenu?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR);
-  const itemList =
-    resMenu?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card
-      ?.itemCards !== undefined
-      ? resMenu?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card
-          ?.card?.itemCards
-      : resMenu?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
-          ?.card?.itemCards;
+  const freshList = resMenu?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR.cards;
+
+  const menuList = freshList.filter((x) => {
+    console.log(x.card.card["@type"]);
+    return (
+      x.card.card["@type"] ===
+      "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+    );
+  });
 
   return (
-    <div className="menu">
-      <h1>{name}</h1>
-      <h2>{city}</h2>
-      <h2>{cuisines.join(", ")}</h2>
-      <h4>{"cost for 2 " + costForTwo / 100 + " Rs"}</h4>
-      <div>Menu</div>
-      <ul>
-        {itemList.map((x) => {
-          return (
-            <li key={x.card.info.name}>
-              <div>
-                <span>{x.card.info.name}</span>
-                <span>
-                  {" Rs. " +
-                    Math.floor(
-                      (x.card.info.price ?? x.card.info.defaultPrice) / 100
-                    )}
-                </span>
-              </div>
-            </li>
-          );
-        })}
-      </ul>
+    <div className="h-full mx-auto my-4 w-6/12 text-center">
+      <div className="flex flex-col gap-6 justify-center">
+        <span className="font-extrabold text-2xl">{name}</span>
+        <div className="flex gap-6 justify-center font-semibold text-xl text-slate-600">
+          <span>{"Location: " + city}</span>
+          <span>{"Cuisines: " + cuisines.join(", ")}</span>
+          <span>{"Cost For 2 approx. " + costForTwo / 100 + " Rs"}</span>
+        </div>
+      </div>
+      <ResAccordion menuList={menuList} />
     </div>
   );
 };

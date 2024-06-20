@@ -31,7 +31,7 @@ const AppLayout = () => {
     <div className="app flex flex-col justify-between h-full ">
       <Header />
       <Outlet />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

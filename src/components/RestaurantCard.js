@@ -1,9 +1,8 @@
 import { CDN_URL } from "../constants";
 
-export default RestaurantCard = ({ resData }) => {
+const RestaurantCard = ({ resData }) => {
   const { name, cuisines, costForTwo, cloudinaryImageId, sla, avgRating } =
     resData?.info;
-  console.log(name, costForTwo);
   return (
     <div className="w-9/12 h-5/6 shadow-2xl rounded-lg m-12 p-2 font-bold hover:bg-slate-100 hover:scale-110">
       <div className="flex p-1">
@@ -28,4 +27,17 @@ export default RestaurantCard = ({ resData }) => {
   );
 };
 
-// export default RestaurantCard;
+export const HasOffer = (RestaurantCard) => {
+  return (res) => {
+    return (
+      <div className="relative">
+        <h4 className="absolute bg-black text-neutral-50 font-bold w-36 top-0 p-2 rounded-lg z-50 left-4">
+          Offers Available
+        </h4>
+        <RestaurantCard {...res} />
+      </div>
+    );
+  };
+};
+
+export default RestaurantCard;

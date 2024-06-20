@@ -1,4 +1,4 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { HasOffer } from "./RestaurantCard";
 import { API } from "../constants";
 import Shimmer from "./Shimmer";
 import { useEffect, useState } from "react";
@@ -9,7 +9,7 @@ const Body = () => {
   const [searchText, setSearchText] = useState("");
   const [filterResList, setFilterResList] = useState([]);
   const [set, reset] = useState(false);
-
+  const ResWithOffer = HasOffer(RestaurantCard);
   const fetchData = async (api) => {
     const resListJson = await fetch(api, { mode: "cors" });
     const resList = await resListJson.json();
@@ -78,7 +78,12 @@ const Body = () => {
             key={res.info.id}
             className="link"
           >
-            <RestaurantCard key={res.info.id} resData={res} />
+            {/* {console.log()} */}
+            {res?.info?.aggregatedDiscountInfoV3?.header != "ITEMS" ? (
+              <RestaurantCard resData={res} />
+            ) : (
+              <ResWithOffer resData={res} />
+            )}
           </Link>
         ))}
       </div>
