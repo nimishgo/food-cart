@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom";
 import { LOGO_URL } from "../constants";
 import { CiShoppingCart } from "react-icons/ci";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/userStore";
 
 const Header = () => {
+  const { userName } = useContext(UserContext);
+  console.log(userName);
   const [log, setLog] = useState("log-in");
   const check = useOnlineStatus();
   return (
@@ -58,6 +61,7 @@ const Header = () => {
             {log}
           </button>
         </li>
+        <li>{userName}</li>
       </ul>
     </div>
   );

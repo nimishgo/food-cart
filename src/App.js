@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useState, useContext } from "react";
 import ReactDom from "react-dom/client";
 import Body from "./components/Body";
 import Header from "./components/Header";
@@ -8,6 +8,8 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Contact from "./components/Contact";
 import RestaurantMenu from "./components/RestaurantMenu";
 import Errors from "./components/Errors";
+import UserContext from "./utils/userStore";
+
 /**
  *  * Headers
  *    * Logo
@@ -27,12 +29,15 @@ import Errors from "./components/Errors";
  */
 const Grocery = lazy(() => import("./components/Grocery"));
 const AppLayout = () => {
+  const data = useContext(UserContext);
+  const [name, setname] = useState(data.userName);
   return (
-    <div className="app flex flex-col justify-between h-full ">
-      <Header />
-      <Outlet />
-      {/* <Footer /> */}
-    </div>
+    <UserContext.Provider value={{ userName: name, setname }}>
+      <div className="app flex flex-col justify-between h-full ">
+        <Header />
+        <Outlet />
+      </div>
+    </UserContext.Provider>
   );
 };
 

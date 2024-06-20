@@ -8,7 +8,11 @@ const RestaurantMenu = () => {
 
   const resMenu = useRestaurantMenu(resId);
   if (resMenu == null) {
-    return <Shimmer />;
+    return (
+      <div className="mx-auto flex flex-col gap-2">
+        <Shimmer />;
+      </div>
+    );
   }
 
   console.log(resMenu);

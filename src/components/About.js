@@ -1,3 +1,4 @@
+import Footer from "./Footer";
 import User from "./User";
 import UserClass from "./UserClass";
 
@@ -13,6 +14,7 @@ export default function About() {
         </div>
         <UserClass name={"nimish"} userName={"nimishgo"} />
       </div>
+      <Footer />
     </>
   );
 }

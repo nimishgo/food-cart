@@ -11,7 +11,7 @@ const ResAccordion = ({ menuList }) => {
   };
 
   return (
-    <div>
+    <div className="h-[180vh]">
       {menuList.map((x) => (
         <div key={x?.card?.card?.title}>
           <div
