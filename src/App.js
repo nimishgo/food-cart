@@ -9,6 +9,9 @@ import Contact from "./components/Contact";
 import RestaurantMenu from "./components/RestaurantMenu";
 import Errors from "./components/Errors";
 import UserContext from "./utils/userStore";
+import appStore from "./utils/appStore";
+import { Provider } from "react-redux";
+import Cart from "./components/Cart";
 
 /**
  *  * Headers
@@ -32,12 +35,14 @@ const AppLayout = () => {
   const data = useContext(UserContext);
   const [name, setname] = useState(data.userName);
   return (
-    <UserContext.Provider value={{ userName: name, setname }}>
-      <div className="app flex flex-col justify-between h-full ">
-        <Header />
-        <Outlet />
-      </div>
-    </UserContext.Provider>
+    <Provider store={appStore}>
+      <UserContext.Provider value={{ userName: name, setname }}>
+        <div className="app flex flex-col justify-between h-full ">
+          <Header />
+          <Outlet />
+        </div>
+      </UserContext.Provider>
+    </Provider>
   );
 };
 
@@ -70,6 +75,10 @@ const appRouter = createBrowserRouter([
             <Grocery />
           </Suspense>
         ),
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
     ],
   },

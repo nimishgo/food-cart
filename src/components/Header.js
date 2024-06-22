@@ -5,10 +5,12 @@ import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/userStore";
+import { useSelector } from "react-redux";
 
 const Header = () => {
+  const cartItems = useSelector((store) => store.cart.items);
+  console.log(cartItems);
   const { userName } = useContext(UserContext);
-  console.log(userName);
   const [log, setLog] = useState("log-in");
   const check = useOnlineStatus();
   return (
@@ -43,8 +45,8 @@ const Header = () => {
           </Link>
         </li>
         <li>
-          <Link to="/contact" className="link_hover">
-            <CiShoppingCart /> Cart
+          <Link to="/cart" className="link_hover">
+            <CiShoppingCart /> Cart - {cartItems.length}
           </Link>
         </li>
         <li className="link_hover">{check ? "✅ online" : "❎ offline"}</li>
