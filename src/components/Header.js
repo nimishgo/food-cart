@@ -8,7 +8,6 @@ import { useSelector } from "react-redux";
 
 const Header = () => {
   const cartItems = useSelector((store) => store.cart.items);
-  console.log(cartItems);
   const { userName } = useContext(UserContext);
   const [log, setLog] = useState("log-in");
   const check = useOnlineStatus();

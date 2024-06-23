@@ -15,20 +15,13 @@ const RestaurantMenu = () => {
     );
   }
 
-  console.log(resMenu);
-  console.log(
-    resMenu.cards[4].groupedCard.cardGroupMap.REGULAR.cards[1].card.card[
-      "@type"
-    ]
-  );
-
   const { name, city, cuisines, costForTwo } = {
-    ...resMenu?.cards[2]?.card?.card?.info,
+    ...resMenu.cards[2].card.card.info,
   };
-
+   console.log(name,city,cuisines,costForTwo)
   const freshList = resMenu?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR.cards;
 
-  const menuList = freshList.filter((x) => {
+  const menuList = freshList?.filter((x) => {
     console.log(x.card.card["@type"]);
     return (
       x.card.card["@type"] ===
@@ -42,7 +35,7 @@ const RestaurantMenu = () => {
         <span className="font-extrabold text-2xl">{name}</span>
         <div className="flex gap-6 justify-center font-semibold text-xl text-slate-600">
           <span>{"Location: " + city}</span>
-          <span>{"Cuisines: " + cuisines.join(", ")}</span>
+          <span>{"Cuisines: " + cuisines?.join(", ")}</span>
           <span>{"Cost For 2 approx. " + costForTwo / 100 + " Rs"}</span>
         </div>
       </div>

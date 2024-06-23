@@ -18,7 +18,8 @@ const Body = () => {
     const resListJson = await fetch(api, { mode: "cors" });
     const resList = await resListJson.json();
     const resData =
-      resList.data.cards[4].card.card.gridElements.infoWithStyle.restaurants;
+      resList?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants;
     setresList(resData);
     setFilterResList(resData);
   };
@@ -31,7 +32,7 @@ const Body = () => {
     fetchData(API);
   }, []);
 
-  return resList.length == 0 ? (
+  return resList?.length == 0 ? (
     <div className="card_container">
       <Shimmer />
     </div>
@@ -41,6 +42,7 @@ const Body = () => {
         <div className="flex">
           <div className="p-6 flex space-x-2">
             <input
+              data-testid="searchInput"
               type="text"
               className="search-box border-slate-500 border-solid border-2 rounded-lg ml-8"
               value={searchText}
@@ -89,7 +91,7 @@ const Body = () => {
         </div>
 
         <div className="card_container">
-          {filterResList.map((res) => (
+          {filterResList?.map((res) => (
             <Link
               to={`restaurants/${res.info.id}`}
               key={res.info.id}

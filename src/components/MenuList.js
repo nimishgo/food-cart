@@ -7,10 +7,12 @@ const MenuList = ({ resMenu }) => {
   const funAddItems = (item) => {
     dispatch(addItem(item));
   };
+  console.log(resMenu);
   return (
     <>
-      {resMenu.map((item) => (
+      {resMenu?.map((item) => (
         <div
+          data-testid="foodItems"
           key={item.card.info.name}
           className="flex justify-between items-center border-b-2 border-solid border-slate-400 p-4 shadow-lg rounded-lg m-4"
         >
