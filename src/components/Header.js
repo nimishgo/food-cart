@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { LOGO_URL } from "../constants";
 import { CiShoppingCart } from "react-icons/ci";
 import { useState, useContext } from "react";
